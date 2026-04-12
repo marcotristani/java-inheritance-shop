@@ -6,14 +6,14 @@ import java.util.Random;
 public class Prodotto {
 
     // caratteristiche
-    protected int code;
-    protected String name;
-    protected String marca;
-    protected BigDecimal price;
-    protected BigDecimal iva;
+    private int code;
+    private String name;
+    private String marca;
+    private BigDecimal price;
+    private BigDecimal iva;
 
     // costruttore
-    public Prodotto(String name, String marca, BigDecimal price, BigDecimal iva) {
+    protected Prodotto(String name, String marca, BigDecimal price, BigDecimal iva) {
         Random random = new Random();
         this.code = random.nextInt(999999);
         this.marca = marca;
