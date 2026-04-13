@@ -9,7 +9,7 @@ public class Cuffie extends Prodotto {
     private Boolean cablate;
 
     public Cuffie(String nome, String marca, BigDecimal price, String color, boolean wirless) {
-        super(color, marca, price);
+        super(nome, marca, price);
         this.color = color;
         if (wirless) {
             this.wirless = true;
@@ -70,6 +70,6 @@ public class Cuffie extends Prodotto {
 
     @Override
     public String toString() {
-        return String.format("%s\ncolor : %s\nTipo: %s", super.toString(), color, this.getType());
+        return String.format("%s\ncolor : %s\nTipo: %s", super.toString(), this.getColor(), this.getType());
     }
 }
