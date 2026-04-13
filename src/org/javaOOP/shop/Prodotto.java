@@ -13,13 +13,13 @@ public class Prodotto {
     private BigDecimal iva;
 
     // costruttore
-    protected Prodotto(String name, String marca, BigDecimal price, BigDecimal iva) {
+    protected Prodotto(String name, String marca, BigDecimal price) {
         Random random = new Random();
         this.code = random.nextInt(999999);
         this.marca = marca;
         this.name = name;
         this.price = price;
-        this.iva = iva;
+        this.iva = BigDecimal.valueOf(0.22);
     }
 
     // METODI
@@ -63,6 +63,18 @@ public class Prodotto {
 
     public void setIva(BigDecimal iva) {
         this.iva = iva;
+    }
+
+    public BigDecimal finalPrice() {
+        return price.add(iva.multiply(BigDecimal.valueOf(100)));
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s - %d\nMarca: %s\nPrezzo : %.2f euro + %.0f %% iva  = %.2f euro", this.name, this.code,
+                this.marca,
+                this.price, this.iva.multiply(BigDecimal.valueOf(100)),
+                this.finalPrice());
     }
 
 }

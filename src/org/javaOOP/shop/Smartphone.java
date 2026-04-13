@@ -8,8 +8,8 @@ public class Smartphone extends Prodotto {
     private int IMEIcode;
     private float memory;
 
-    public Smartphone(String name, String marca, BigDecimal price, BigDecimal iva, float memory) {
-        super(name, marca, price, iva);
+    public Smartphone(String name, String marca, BigDecimal price, float memory) {
+        super(name, marca, price);
         this.memory = memory;
 
         Random random = new Random();
@@ -29,5 +29,15 @@ public class Smartphone extends Prodotto {
         if (memory > 0) {
             this.memory = memory;
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\nCodice IMEI: %d \nMemoria: %.2f GB\n ",
+                super.toString(),
+                this.getIMEIcode(),
+                this.getMemory()
+
+        );
     }
 }

@@ -9,9 +9,9 @@ public class TV extends Prodotto {
     private float larghezza;
     private boolean smart;
 
-    public TV(String name, String marca, BigDecimal price, BigDecimal iva, float altezza, float lunghezza,
+    public TV(String name, String marca, BigDecimal price, float altezza, float lunghezza,
             float larghezza, boolean smart) {
-        super(name, marca, price, iva);
+        super(name, marca, price);
         this.altezza = altezza;
         this.larghezza = larghezza;
         this.lunghezza = lunghezza;
@@ -73,4 +73,13 @@ public class TV extends Prodotto {
         }
     }
 
+    @Override
+    public String toString() {
+        return String.format("%s\nDimensioni: %.2fcm x %.2fcm x %.2fcm\nSmart: %s",
+                super.toString(),
+                this.getAltezza(),
+                this.getLunghezza(),
+                this.getLarghezza(),
+                this.getSmart());
+    }
 }

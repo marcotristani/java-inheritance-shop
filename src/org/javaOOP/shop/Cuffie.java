@@ -8,8 +8,8 @@ public class Cuffie extends Prodotto {
     private Boolean wirless;
     private Boolean cablate;
 
-    public Cuffie(String nome, String marca, BigDecimal price, BigDecimal iva, String color, boolean wirless) {
-        super(color, marca, price, iva);
+    public Cuffie(String nome, String marca, BigDecimal price, String color, boolean wirless) {
+        super(color, marca, price);
         this.color = color;
         if (wirless) {
             this.wirless = true;
@@ -66,5 +66,10 @@ public class Cuffie extends Prodotto {
             this.setCablate(true);
             this.setWirless(false);
         }
+    }
+
+    @Override
+    public String toString() {
+        return String.format("%s\ncolor : %s\nTipo: %s", super.toString(), color, this.getType());
     }
 }
