@@ -3,7 +3,7 @@ package org.javaOOP.shop;
 import java.math.BigDecimal;
 import java.util.Random;
 
-public class Prodotto {
+public abstract class Prodotto {
 
     // caratteristiche
     private int code;
@@ -24,7 +24,7 @@ public class Prodotto {
 
     // METODI
 
-    // code
+    // code(solo get)
     public int getCode() {
         return this.code;
     }
@@ -72,8 +72,8 @@ public class Prodotto {
     @Override
     public String toString() {
         return String.format("%s - %d\nMarca: %s\nPrezzo : %.2f euro + %.0f %% iva  = %.2f euro", this.name, this.code,
-                this.marca,
-                this.price, this.iva.multiply(BigDecimal.valueOf(100)),
+                this.getMarca(),
+                this.getPrice(), this.getIva().multiply(BigDecimal.valueOf(100)),
                 this.finalPrice());
     }
 
