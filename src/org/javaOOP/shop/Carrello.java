@@ -36,6 +36,26 @@ public class Carrello {
         // inizializzo l'array finale con tutti i prodotti inseriti nel carrello
         Prodotto[] prodottiCarrello = new Prodotto[0];
 
+        // verifico se ha una carta fedelta
+        boolean haveFedelityCard = false;
+        String codeFedelity = "";
+        String rispostaFedelity;
+        do {
+            System.out.println("Hai una carta fedeltà?\" \"Yes\"  o  \"No\" ?");
+            rispostaFedelity = input.next();
+
+            // se risposta è negativo rendo aggiungiprodotto falso così da uscire dal ciclo
+            if (rispostaFedelity.toLowerCase().equals("yes")) {
+                haveFedelityCard = true;
+            }
+        } while (!rispostaFedelity.toLowerCase().equals("yes") && !rispostaFedelity.toLowerCase().equals("no"));
+        if (haveFedelityCard) {
+            System.out.println("Inserisci qui il tuo codice fedeltà:");
+            codeFedelity = input.next();
+        } else {
+            System.out.println("Nessun codice fedeltà inserito");
+        }
+
         // faccio un ciclo dove vado a far inserire al'utente i prodotti nel carrello
         // finchè non mi dice di non aggiungere più prodotti
         while (aggiungiProdotto) {
@@ -61,7 +81,7 @@ public class Carrello {
                         System.out.printf("%d - %s\n", index + 1, category[index]);
 
                     }
-                    System.out.println("Selezionare in numero della categoria di prodotto interessato:");
+                    System.out.println("\nSelezionare in numero della categoria di prodotto interessato:");
                     caso = input.nextInt();
                     if (caso <= 0 || caso > category.length) {
                         System.out.println("Inserire un numero corrispondente alle categorie indicato");
@@ -123,7 +143,11 @@ public class Carrello {
                     // creo un nuovo elemento smartphone e lo salvo come ultimo elemento dell'array
                     // nuovo momentaneo da copiare nell'arrai prodotti carrello finale
                     Smartphone smartphoneCarrello = new Smartphone(nome, marca, price, memory);
+                    if (haveFedelityCard) {
+                        smartphoneCarrello.setFedelityCode(codeFedelity);
+                    }
                     momentaneoProdottiCarrello[prodottiCarrello.length] = smartphoneCarrello;
+
                     break;
 
                 case 2:
@@ -198,6 +222,9 @@ public class Carrello {
                     // creo un nuovo elemento TV e lo salvo come ultimo elemento dell'array
                     // nuovo momentaneo da copiare nell'arrai prodotti carrello finale
                     TV televisioneCarrello = new TV(nome, marca, price, altezza, lunghezza, larghezza, smart);
+                    if (haveFedelityCard) {
+                        televisioneCarrello.setFedelityCode(codeFedelity);
+                    }
                     momentaneoProdottiCarrello[prodottiCarrello.length] = televisioneCarrello;
                     break;
                 case 3:
@@ -218,6 +245,9 @@ public class Carrello {
                     // creo un nuovo elemento cuffie e lo salvo come ultimo elemento dell'array
                     // nuovo momentaneo da copiare nell'arrai prodotti carrello finale
                     Cuffie cuffieCarrello = new Cuffie(nome, marca, price, color, wirless);
+                    if (haveFedelityCard) {
+                        cuffieCarrello.setFedelityCode(codeFedelity);
+                    }
                     momentaneoProdottiCarrello[prodottiCarrello.length] = cuffieCarrello;
                     break;
             }
@@ -226,23 +256,23 @@ public class Carrello {
             prodottiCarrello = momentaneoProdottiCarrello;
 
             // creo variabile moemntanea per verificare la risposta ad aggiunta carrello
-            String risposta;
+            String rispostaAddProduct;
             do {
                 System.out.println("Vuoi aggiungere un prodotto al carrello?\" \"Yes\"  o  \"No\" ?");
-                risposta = input.next();
+                rispostaAddProduct = input.next();
 
                 // se risposta è negativo rendo aggiungiprodotto falso così da uscire dal ciclo
-                if (risposta.toLowerCase().equals("no")) {
+                if (rispostaAddProduct.toLowerCase().equals("no")) {
                     aggiungiProdotto = false;
                 }
-            } while (!risposta.toLowerCase().equals("yes") && !risposta.toLowerCase().equals("no"));
+            } while (!rispostaAddProduct.toLowerCase().equals("yes") && !rispostaAddProduct.toLowerCase().equals("no"));
         }
 
         // stampo il carrello definitivo
         System.out.println("\n++++++++++CARRELLO++++++++++++\n");
         for (int i = 0; i < prodottiCarrello.length; i++) {
 
-            System.out.printf("---------PRODOTTO %d------------\n%s\n\n", i + 1, prodottiCarrello[i]);
+            System.out.printf("---------PRODOTTO %d------------\n%s\n\n", i + 1, prodottiCarrello[i].toString());
         }
         input.close();
 

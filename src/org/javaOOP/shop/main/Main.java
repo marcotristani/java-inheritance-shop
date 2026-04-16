@@ -68,5 +68,7 @@ public class Main {
                                                 cuffia1.getPrice().setScale(2, RoundingMode.DOWN),
                                                 cuffia1.getIva().multiply(BigDecimal.valueOf(100)).setScale(2,
                                                                 RoundingMode.DOWN)));
+
         }
+
 }

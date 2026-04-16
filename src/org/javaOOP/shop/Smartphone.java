@@ -32,6 +32,16 @@ public class Smartphone extends Prodotto {
     }
 
     @Override
+    public BigDecimal finalPriceDiscounted() {
+        BigDecimal discount = this.finalPrice().multiply(BigDecimal.valueOf(0.02));
+        if (memory < 32f) {
+            discount = this.finalPrice().multiply(BigDecimal.valueOf(0.05));
+        }
+
+        return this.finalPrice().subtract(discount);
+    }
+
+    @Override
     public String toString() {
         return String.format("%s\nCodice IMEI: %d \nMemoria: %.2f GB\n ",
                 super.toString(),

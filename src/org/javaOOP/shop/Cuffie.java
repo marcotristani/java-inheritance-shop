@@ -69,6 +69,15 @@ public class Cuffie extends Prodotto {
     }
 
     @Override
+    public BigDecimal finalPriceDiscounted() {
+        BigDecimal discount = this.finalPrice().multiply(BigDecimal.valueOf(0.02));
+        if (!this.cablate) {
+            discount = this.finalPrice().multiply(BigDecimal.valueOf(0.07));
+        }
+        return this.finalPrice().subtract(discount);
+    }
+
+    @Override
     public String toString() {
         return String.format("%s\ncolor : %s\nTipo: %s", super.toString(), this.getColor(), this.getType());
     }

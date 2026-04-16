@@ -74,6 +74,15 @@ public class TV extends Prodotto {
     }
 
     @Override
+    public BigDecimal finalPriceDiscounted() {
+        BigDecimal discount = this.finalPrice().multiply(BigDecimal.valueOf(0.02));
+        if (!this.smart) {
+            discount = this.finalPrice().multiply(BigDecimal.valueOf(0.10));
+        }
+        return this.finalPrice().subtract(discount);
+    }
+
+    @Override
     public String toString() {
         return String.format("%s\nDimensioni: %.2fcm x %.2fcm x %.2fcm\nSmart: %s",
                 super.toString(),
